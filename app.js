@@ -12,11 +12,6 @@ var events = [
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/', (req, res) => {
-  models.Event.findAll({ order: [['createdAt', 'DESC']] }).then(events => {
-    res.render('events-index', { events: events });
-  })
-})
 
 
 app.get('/', (req,res) => {
@@ -63,3 +58,5 @@ const { Sequelize } = require('sequelize');
 
 // Option 1: Passing a connection URI
 const sequelize = new Sequelize('sqlite::memory:') // Example for sqlite
+
+require('./controllers/events')(app, models);
