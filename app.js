@@ -39,6 +39,15 @@ app.get('/events/:id', (req, res) => {
   })
 });
 
+app.delete('/events/:id', (req, res) => {
+  models.Event.findByPk(req.params.id).then(event => {
+    event.destroy();
+    res.redirect
+  }).catch((err) => {
+    console.log(err);
+  });
+})
+
 const exphbs = require('express-handlebars');
 const Handlebars = require('handlebars')
 const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access')
